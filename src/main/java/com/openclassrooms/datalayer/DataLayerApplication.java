@@ -5,6 +5,7 @@ import com.openclassrooms.datalayer.model.Comment;
 import com.openclassrooms.datalayer.model.Product;
 import com.openclassrooms.datalayer.service.CategoryService;
 import com.openclassrooms.datalayer.service.CommentService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -30,6 +31,7 @@ public class DataLayerApplication implements CommandLineRunner {
 	}
 
 	@Override
+	@Transactional
 	public void run(String... args) throws Exception {
 		/*Iterable<Product> products = productService.getProducts();
 		products.forEach(product -> System.out.println(product.getName()));
@@ -43,13 +45,24 @@ public class DataLayerApplication implements CommandLineRunner {
 		categories.forEach(category -> System.out.println(category.getName()));
 		System.out.println();*/
 
+		// OneToMany
 		Optional<Product> optProduct = productService.getProductById(1);
 		Product productId1 = optProduct.get();
 		System.out.println(productId1.getName());
 
-		// Affichage des commenatires du produit
+		// Affichage des commenataires du produit
 		productId1.getComments().forEach(
 				comment -> System.out.println(comment.getContent()));
+		System.out.println();
+
+		// ManyToMany
+		Optional<Category> optCategory = categoryService.getCategoryById(1);
+		Category categoryId1 = optCategory.get();
+
+		System.out.println(categoryId1.getName());
+
+		categoryId1.getProducts().forEach(
+				product -> System.out.println(product.getName()));
 	}
 
 }

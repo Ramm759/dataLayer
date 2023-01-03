@@ -63,6 +63,15 @@ public class DataLayerApplication implements CommandLineRunner {
 
 		categoryId1.getProducts().forEach(
 				product -> System.out.println(product.getName()));
+		System.out.println();
+
+		// ManyToMany Bi-directionnel
+		Optional<Product> optionalProduct = productService.getProductById(1);
+		Product product1 = optionalProduct.get();
+		System.out.println(product1.getName());
+		product1.getCategories().forEach(
+				category -> System.out.println(category.getName())
+		);
 	}
 
 }

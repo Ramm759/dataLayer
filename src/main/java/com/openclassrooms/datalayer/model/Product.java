@@ -39,12 +39,25 @@ public class Product {
         return comments;
     }
 
+    @ManyToMany( // Relation bi-directionnelle, table de jointure déjà définie dans Category
+            mappedBy = "products"
+    )
+    private List<Category> categories = new ArrayList<>();
+
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 
     public int getProductId() {
         return productId;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     public void setProductId(int productId) {

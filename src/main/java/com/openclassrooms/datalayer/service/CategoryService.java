@@ -5,6 +5,8 @@ import com.openclassrooms.datalayer.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CategoryService {
     @Autowired
@@ -12,5 +14,9 @@ public class CategoryService {
 
     public Iterable<Category> getCategories(){
         return categoryRepository.findAll();
+    }
+
+    public Optional<Category> getCategoryById(Integer id) {
+        return categoryRepository.findById(id);
     }
 }

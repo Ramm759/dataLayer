@@ -11,6 +11,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.openclassrooms.datalayer.service.ProductService;
 
+import java.util.Optional;
+
 @SpringBootApplication
 public class DataLayerApplication implements CommandLineRunner {
 
@@ -39,6 +41,11 @@ public class DataLayerApplication implements CommandLineRunner {
 
 		Iterable<Category> categories = categoryService.getCategories();
 		categories.forEach(category -> System.out.println(category.getName()));
+		System.out.println();
+
+		Optional<Product> optProduct = productService.getProductById(1);
+		Product productId1 = optProduct.get();
+		System.out.println(productId1.getName());
 	}
 
 }

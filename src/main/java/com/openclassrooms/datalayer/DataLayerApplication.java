@@ -31,21 +31,25 @@ public class DataLayerApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Iterable<Product> products = productService.getProducts();
+		/*Iterable<Product> products = productService.getProducts();
 		products.forEach(product -> System.out.println(product.getName()));
-		System.out.println();
+		System.out.println();*/
 
-		Iterable<Comment> comments = commentService.getComments();
+		/*Iterable<Comment> comments = commentService.getComments();
 		comments.forEach((comment -> System.out.println(comment.getContent())));
-		System.out.println();
+		System.out.println();*/
 
-		Iterable<Category> categories = categoryService.getCategories();
+		/*Iterable<Category> categories = categoryService.getCategories();
 		categories.forEach(category -> System.out.println(category.getName()));
-		System.out.println();
+		System.out.println();*/
 
 		Optional<Product> optProduct = productService.getProductById(1);
 		Product productId1 = optProduct.get();
 		System.out.println(productId1.getName());
+
+		// Affichage des commenatires du produit
+		productId1.getComments().forEach(
+				comment -> System.out.println(comment.getContent()));
 	}
 
 }
